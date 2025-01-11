@@ -7,6 +7,8 @@ SERVER_FIFO="/tmp/server-fifo"
 # Only create the FIFO if it doesn't already exist
 [ ! -p $SERVER_FIFO ] && mkfifo $SERVER_FIFO
 
+echo "Server running... Waiting for requests."
+
 while true; do
   REQUEST=$(cat $SERVER_FIFO)
   echo "Received request: $REQUEST"
@@ -16,6 +18,5 @@ while true; do
   COMMAND_NAME=$(echo $REQUEST | sed -n 's/.*: \(.*\)] .*/\1/p')
 
   CLIENT_FIFO="/tmp/server-reply-$CLIENT_PID"
-  mkfifo $CLIENT_FIFO
   man $COMMAND_NAME > $CLIENT_FIFO
 done
