@@ -4,6 +4,14 @@
 # TODO: Configure this via config file
 SERVER_FIFO="/tmp/server-fifo"
 
+cleanup() {
+  rm -f $SERVER_FIFO
+  exit 0
+}
+
+# Trap SIGINT (Ctrl+C) to call the cleanup function
+trap cleanup SIGINT
+
 # Only create the FIFO if it doesn't already exist
 [ ! -p $SERVER_FIFO ] && mkfifo $SERVER_FIFO
 
