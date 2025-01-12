@@ -5,4 +5,4 @@
 - [X] Create an initial implementation using FIFOs
 - [X] Fix bug regarding concurrency issues
 - [X] Clear the FIFOs on SIGINT
-- [ ] Create a configurable file
+- [X] Create a configurable file
