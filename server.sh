@@ -1,8 +1,14 @@
 #!/bin/bash
 
 # Create a server
-# TODO: Configure this via config file
-SERVER_FIFO="/tmp/server-fifo"
+# Configuration file for server fifo
+CONFIG_FILE="config.cfg"
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "Error: Configuration file $CONFIG_FILE not found!"
+    exit 1
+fi
 
 cleanup() {
   rm -f $SERVER_FIFO
