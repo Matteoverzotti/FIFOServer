@@ -8,8 +8,15 @@ if [ -z $COMMAND_NAME ]; then
   exit 1
 fi
 
-# TODO: Configure this via config file
-SERVER_FIFO="/tmp/server-fifo"
+# Configuration file
+CONFIG_FILE="config.cfg"
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+else
+    echo "Error: Configuration file $CONFIG_FILE not found!"
+    exit 1
+fi
+
 CLIENT_FIFO="/tmp/server-reply-$CLIENT_PID"
 
 if [ ! -p $SERVER_FIFO ]; then
