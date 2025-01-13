@@ -57,7 +57,7 @@ show_menu() {
             3 "Exit" \
             3>&1 1>&2 2>&3)
         dialog --infobox "Processing your request, please wait..." 5 40
-        sleep 1
+        sleep 0.5
         # Handle menu selection
         case $choice in
             1)
